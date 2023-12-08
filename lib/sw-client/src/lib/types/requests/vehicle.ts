@@ -1,7 +1,3 @@
-import { VehicleResponse } from '../responses/vehicle';
-import { FilteredRequest } from './filtered';
-import { PaginatedRequest } from './paginated';
+import { CommonRequest } from './common';
 
-export type VehicleRequest = PaginatedRequest<
-  FilteredRequest<Pick<VehicleResponse, 'name' | 'model'>>
->;
+export type VehicleRequest = CommonRequest;

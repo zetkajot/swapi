@@ -1,7 +1,3 @@
-import { StarshipResponse } from '../responses/starship';
-import { FilteredRequest } from './filtered';
-import { PaginatedRequest } from './paginated';
+import { CommonRequest } from './common';
 
-export type StarshipRequest = PaginatedRequest<
-  FilteredRequest<Pick<StarshipResponse, 'name' | 'model'>>
->;
+export type StarshipRequest = CommonRequest;

@@ -1,7 +1,3 @@
-import { SpeciesResponse } from '../responses/species';
-import { FilteredRequest } from './filtered';
-import { PaginatedRequest } from './paginated';
+import { CommonRequest } from './common';
 
-export type SpeciesRequest = PaginatedRequest<
-  FilteredRequest<Pick<SpeciesResponse, 'name'>>
->;
+export type SpeciesRequest = CommonRequest;

@@ -1,5 +1,3 @@
-import { PlanetResponse } from '../responses/planet';
-import { FilteredRequest } from './filtered';
-import { PaginatedRequest } from './paginated';
+import { CommonRequest } from './common';
 
-export type PlanetRequest = PaginatedRequest<FilteredRequest<Pick<PlanetResponse, 'name'>>>
+export type PlanetRequest = CommonRequest;

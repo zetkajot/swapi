@@ -1,7 +1,3 @@
-import { FilmResponse } from '../responses/film';
-import { FilteredRequest } from './filtered';
-import { PaginatedRequest } from './paginated';
+import { CommonRequest } from './common';
 
-export type FilmRequest = PaginatedRequest<
-  FilteredRequest<Pick<FilmResponse, 'title'>>
->;
+export type FilmRequest = CommonRequest;
