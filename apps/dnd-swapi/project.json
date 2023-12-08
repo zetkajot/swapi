@@ -1,0 +1,57 @@
+{
+  "name": "dnd-swapi",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/dnd-swapi/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/dnd-swapi",
+        "main": "apps/dnd-swapi/src/main.ts",
+        "tsConfig": "apps/dnd-swapi/tsconfig.app.json",
+        "assets": ["apps/dnd-swapi/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/dnd-swapi/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "dnd-swapi:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "dnd-swapi:build:development"
+        },
+        "production": {
+          "buildTarget": "dnd-swapi:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/dnd-swapi/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/dnd-swapi/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
