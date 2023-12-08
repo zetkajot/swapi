@@ -8,6 +8,7 @@ export class SWClientModule {
     return {
       module: SWClientModule,
       imports: [HttpModule],
+      exports: [SWClientService],
       providers: [
         {
           provide: SWClientService,
