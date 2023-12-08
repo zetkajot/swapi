@@ -1,4 +1,4 @@
-import { RequestForRoute, Routes } from '../types/routes';
+import { RequestForRoute, APIRoutes } from '../types/api-routes';
 import { URLParams } from '../types/url-params';
 
 /**
@@ -6,7 +6,7 @@ import { URLParams } from '../types/url-params';
  * HTTP(S) request's query params to use.
  * @param request Request
  */
-export function transformRequest<T extends Routes>(
+export function transformRequest<T extends APIRoutes>(
   request: RequestForRoute<T>
 ): URLParams {
   const page = Math.floor(Math.max(1, request.page ?? 1));
