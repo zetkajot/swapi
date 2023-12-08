@@ -27,12 +27,12 @@ export abstract class AbstractCacheAgent<In, Out, Key> {
     }
   }
 
-  public bindCacheAsync<FnIn extends unknown[]>(fn: CacheableAsyncFn<FnIn, Out>, inputTransform: (fnInput: FnIn) => In): CacheableAsyncFn<FnIn, Out> {
+  public bindCacheAsync<FnIn extends unknown[], FnOut extends Out>(fn: CacheableAsyncFn<FnIn, FnOut>, inputTransform: (fnInput: FnIn) => In): typeof fn {
     return async (...args: FnIn) => {
       const transformedInput = inputTransform(args);
       const cachedValue = await this.getCachedValueFor(transformedInput);
       if (cachedValue !== null) {
-        return cachedValue;
+        return cachedValue as FnOut;
       } else {
         return fn(...args);
       }
