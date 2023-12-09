@@ -21,7 +21,8 @@
       "@self/redis": ["lib/redis/src/index.ts"],
       "@self/sw-client": ["lib/sw-client/src/index.ts"],
       "@self/utils": ["lib/utils/src/index.ts"]
-    }
+    },
+    "typeRoots": ["types"],
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
 }
