@@ -1,20 +1,18 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { AbstractCacheAgent, CacheStorage } from '@self/cache';
-import { SWClientService } from '@self/sw-client';
+import { Injectable } from '@nestjs/common';
+import { AbstractCacheAgent } from '@self/cache';
+import { AllRequests } from './types/all-requests';
+import { AllResponses } from './types/all-responses';
+import { SWCacheStorageService } from './sw-cache-storage.service';
 
-export const SW_CACHE_AGENT_TOKEN = Symbol();
-
-type AllRequests = Parameters<SWClientService[keyof SWClientService]>;
 type CacheInput = {
   path: string;
   request: AllRequests;
 }
-type AllResponses = Awaited<ReturnType<SWClientService[keyof SWClientService]>>;
 
 @Injectable()
 export class SWCacheAgentService extends AbstractCacheAgent<CacheInput, AllResponses, string> {
   private static readonly CACHE_KEY_SEP = ':' as const;
-  constructor(@Inject(SW_CACHE_AGENT_TOKEN) storage: CacheStorage<string, AllResponses>) {
+  constructor(storage: SWCacheStorageService) {
     super(storage);
   }
 
