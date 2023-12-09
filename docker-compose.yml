@@ -5,4 +5,14 @@ services:
     container_name: redis-cache
     image: redis:6
     ports:
-      - 6379:6379
+      - '${REDIS_PORT}:6379'
+  swapi:
+    container_name: swapi
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      REDIS_HOST: redis
+    ports: 
+      - '${APP_PORT}:${APP_PORT}'
