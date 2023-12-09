@@ -1,7 +1,3 @@
-export function isControlCharOrSpace(str: string): boolean {
-  return str.charCodeAt(0) <= 0x20 && str.charCodeAt(0) !== 0x7f;
-}
-
 export function isAlphanumericOrSingleQt(str: string): boolean {
   const charCode = str.charCodeAt(0);
   return (

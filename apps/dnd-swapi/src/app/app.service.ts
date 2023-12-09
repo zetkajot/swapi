@@ -39,7 +39,7 @@ export class AppService {
         wordBuffer = '';
       }
     }
-    return Object.entries(dict);
+    return Object.entries(dict).sort(([,lCount], [,rCount]) => rCount - lCount);
   }
 
   private async getAllFilms(): Promise<FilmResponse[]> {
