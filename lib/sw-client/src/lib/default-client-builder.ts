@@ -12,9 +12,16 @@ import { NoResponseError } from './errors/no-response.error';
 import { RequestFailedError } from './errors/request-failed.error';
 import { assert } from 'console';
 
-export class DefaultClientBuilder<T = object> implements ClientBuilder<T> {
+export class DefaultClientBuilder<
+  T extends Record<string, unknown> = Record<string, unknown>
+> implements ClientBuilder<T>
+{
   private constructor(
     private readonly routeRegister: Set<string> = new Set(),
+    private readonly nameOverrides: Record<keyof T, string> = {} as Record<
+      keyof T,
+      string
+    >,
     private baseURL?: string,
     private httpClient?: Axios
   ) {}
@@ -36,14 +43,31 @@ export class DefaultClientBuilder<T = object> implements ClientBuilder<T> {
   build(): T {
     // Throwing generic js `Error`'s since build should only occur at the application startup
     // so no domain-specific handling would be needed
-    assert(this.httpClient !== undefined, 'Cannot build client without set HTTP Client');
-    assert(this.baseURL !== undefined, 'Cannot build client without set Base URL');
+    assert(
+      this.httpClient !== undefined,
+      'Cannot build client without set HTTP Client'
+    );
+    assert(
+      this.baseURL !== undefined,
+      'Cannot build client without set Base URL'
+    );
 
     const builtClient: Record<string, unknown> = {};
     for (const _routeName of this.routeRegister) {
       const routeName = _routeName as keyof typeof APIRoutes;
-      builtClient['get' + routeName] = makeRouteHandlerForPaginated(routeName, APIRoutes[routeName], this.httpClient!, this.baseURL!)
-      builtClient['get' + routeName.slice(0,-1) + 'ById'] = makeRouteHandlerForSingle(routeName, APIRoutes[routeName], this.httpClient!, this.baseURL!)
+      builtClient['get' + routeName] = makeRouteHandlerForPaginated(
+        routeName,
+        APIRoutes[routeName],
+        this.httpClient!,
+        this.baseURL!
+      );
+      builtClient['get' + routeName.slice(0, -1) + 'ById'] =
+        makeRouteHandlerForSingle(
+          routeName,
+          APIRoutes[routeName],
+          this.httpClient!,
+          this.baseURL!
+        );
     }
 
     return builtClient as T;
@@ -56,6 +80,7 @@ export class DefaultClientBuilder<T = object> implements ClientBuilder<T> {
   private chainedState(): typeof this {
     return new DefaultClientBuilder<T>(
       this.routeRegister,
+      this.nameOverrides,
       this.baseURL,
       this.httpClient
     ) as typeof this;
@@ -84,7 +109,6 @@ function makeRouteHandlerForPaginated<R extends keyof typeof APIRoutes>(
         throw e;
       }
     }
-
   };
 }
 
@@ -93,9 +117,7 @@ function makeRouteHandlerForSingle<R extends keyof typeof APIRoutes>(
   routePath: (typeof APIRoutes)[R],
   client: Axios,
   baseURL: string
-): (
-  id: number
-) => Promise<ResponseForRoute<(typeof APIRoutes)[R]>> {
+): (id: number) => Promise<ResponseForRoute<(typeof APIRoutes)[R]>> {
   return async (id) => {
     const requestURL = baseURL + routePath + id;
     try {
@@ -108,7 +130,6 @@ function makeRouteHandlerForSingle<R extends keyof typeof APIRoutes>(
         throw e;
       }
     }
-
   };
 }
 

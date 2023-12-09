@@ -28,6 +28,10 @@ export class CachedSWClientService implements SWClientService {
     this.client.getStarships,
     (input) => ({ path: 'starships', request: input })
   );
+  getPeoples = this.cacheAgent.bindCacheAsync(this.client.getPeoples, (input) => ({
+    path: 'people',
+    request: input,
+  }));
   getFilmById = this.cacheAgent.bindCacheAsync(this.client.getFilmById, (input) => ({
     path: 'films',
     request: input,
@@ -48,4 +52,10 @@ export class CachedSWClientService implements SWClientService {
     this.client.getStarshipById,
     (input) => ({ path: 'starships', request: input })
   );
+
+
+  getPeopleById = this.cacheAgent.bindCacheAsync(this.client.getPeopleById, (input) => ({
+    path: 'people',
+    request: input,
+  }));
 }

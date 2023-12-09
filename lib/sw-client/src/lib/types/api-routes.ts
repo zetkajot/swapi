@@ -1,9 +1,11 @@
 import { FilmRequest } from './requests/film';
+import { PeopleRequest } from './requests/people';
 import { PlanetRequest } from './requests/planet';
 import { SpeciesRequest } from './requests/species';
 import { StarshipRequest } from './requests/starship';
 import { VehicleRequest } from './requests/vehicle';
 import { FilmResponse } from './responses/film';
+import { PeopleResponse } from './responses/people';
 import { PlanetResponse } from './responses/planet';
 import { SpeciesResponse } from './responses/species';
 import { StarshipResponse } from './responses/starship';
@@ -15,6 +17,7 @@ export const APIRoutes = {
   Species: '/species/',
   Vehicles: '/vehicles/',
   Starships: '/starships/',
+  Peoples: '/people/',
 } as const;
 
 export type APIRoutes = (typeof APIRoutes)[keyof typeof APIRoutes];
@@ -29,6 +32,10 @@ type RouteTypesMap = {
     request: StarshipRequest;
     response: StarshipResponse;
   };
+  [APIRoutes.Peoples]: {
+    request: PeopleRequest,
+    response: PeopleResponse,
+  }
 };
 
 export type RequestForRoute<T extends APIRoutes> = RouteTypesMap[T]['request'];

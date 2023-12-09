@@ -20,6 +20,7 @@ import { Config } from '@self/config';
           .registerRoute('Species')
           .registerRoute('Starships')
           .registerRoute('Vehicles')
+          .registerRoute('Peoples')
           .build(),
       inject: [HttpService, ConfigService],
     },
