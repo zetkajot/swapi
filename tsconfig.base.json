@@ -17,9 +17,10 @@
     "paths": {
       "@self/cache": ["lib/cache/src/index.ts"],
       "@self/cached-sw-client": ["lib/cached-sw-client/src/index.ts"],
+      "@self/config": ["lib/config/index.ts"],
       "@self/redis": ["lib/redis/src/index.ts"],
       "@self/sw-client": ["lib/sw-client/src/index.ts"],
-      "@self/config": ["lib/config/index.ts"]
+      "@self/utils": ["lib/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
