@@ -19,14 +19,13 @@ Built using `nx` and `Nest.js`.
   yarn nx run dnd-swapi:serve
 ```
 
-Running using `docker compose` uses locally-built image of the app (if not present, it will be built from scratch). Also, `REDIS_HOST` env value is bound to the redis container running alongside the app. 
-
 ## Running via docker
 1. Create `.env` file based on provided `.env.example` template
 2. Run docker compose
 ```bash
   docker compose up -d
 ```
+Running using `docker compose` uses locally-built image of the app (if not present, it will be built from scratch). Also, `REDIS_HOST` env value is bound to the redis container running alongside the app. 
 
 ## Configuration
 Application uses following environmental variables:
