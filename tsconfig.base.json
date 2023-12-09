@@ -22,7 +22,7 @@
       "@self/sw-client": ["lib/sw-client/src/index.ts"],
       "@self/utils": ["lib/utils/src/index.ts"]
     },
-    "typeRoots": ["types"]
+    "typeRoots": ["types", "./node_modules/@types"]
   },
   "exclude": ["node_modules"]
 }
