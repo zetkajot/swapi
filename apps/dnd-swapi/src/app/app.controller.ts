@@ -10,6 +10,7 @@ export class AppController {
   @Get('films')
   @ApiQuery({
     name: 'filter',
+    description: 'Values to filter the resources with.',
     type: [String],
     style: 'form',
     explode: false,
@@ -17,6 +18,7 @@ export class AppController {
   })
   @ApiQuery({
     name: 'page',
+    description: 'Page number for paginated responses',
     type: Number,
     required: false,
   })
@@ -34,6 +36,20 @@ export class AppController {
     throw new NotImplementedException();
   }
 
+  @ApiQuery({
+    name: 'filter',
+    description: 'Values to filter the resources with.',
+    type: [String],
+    style: 'form',
+    explode: false,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'page',
+    description: 'Page number for paginated responses',
+    type: Number,
+    required: false,
+  })
   @Get('species')
   public getSpecies(
     @Query('filter', new ParseQueryArrayPipe()) filters?: string[],
@@ -49,6 +65,20 @@ export class AppController {
     throw new NotImplementedException();
   }
 
+  @ApiQuery({
+    name: 'filter',
+    description: 'Values to filter the resources with.',
+    type: [String],
+    style: 'form',
+    explode: false,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'page',
+    description: 'Page number for paginated responses',
+    type: Number,
+    required: false,
+  })
   @Get('vehicles')
   public getVehicles(
     @Query('filter', new ParseQueryArrayPipe()) filters?: string[],
@@ -57,6 +87,7 @@ export class AppController {
     throw new NotImplementedException();
   }
 
+  
   @Get('vehicles/:id')
   public getVehicleById(
     @Param('id', new ParseIntPipe()) id: number, 
@@ -64,6 +95,20 @@ export class AppController {
     throw new NotImplementedException();
   }
 
+  @ApiQuery({
+    name: 'filter',
+    description: 'Values to filter the resources with.',
+    type: [String],
+    style: 'form',
+    explode: false,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'page',
+    description: 'Page number for paginated responses',
+    type: Number,
+    required: false,
+  })
   @Get('starships')
   public getStarships(
     @Query('filter', new ParseQueryArrayPipe()) filters?: string[],
@@ -79,6 +124,20 @@ export class AppController {
     throw new NotImplementedException();
   }
 
+  @ApiQuery({
+    name: 'filter',
+    description: 'Values to filter the resources with.',
+    type: [String],
+    style: 'form',
+    explode: false,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'page',
+    description: 'Page number for paginated responses',
+    type: Number,
+    required: false,
+  })
   @Get('planets')
   public getPlanets(
     @Query('filter', new ParseQueryArrayPipe()) filters?: string[],
