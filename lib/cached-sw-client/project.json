@@ -1,5 +1,5 @@
 {
-  "name": "cached-sw-client",
+  "name": "lib-cached-sw-client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "lib/cached-sw-client/src",
   "projectType": "library",

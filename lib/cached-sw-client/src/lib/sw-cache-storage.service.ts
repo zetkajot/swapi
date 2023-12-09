@@ -26,6 +26,12 @@ export class SWCacheStorageService
       return value as null;
     }
     Logger.debug(`Cache hit for "${key}".`)
-    return JSON.parse(value);
+    try {
+      return JSON.parse(value);
+    } catch (_) {
+      Logger.warn(`Data at key "${key}" corrupted! Deleting and returning null.`)
+      await this.redis.del(key);
+      return null;
+    }
   }
 }
