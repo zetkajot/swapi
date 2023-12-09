@@ -22,7 +22,9 @@ export abstract class AbstractCacheAgent<In, Out, Key> {
       if (cachedValue !== null) {
         return cachedValue;
       } else {
-        return fn(...args);
+        const value = fn(...args);
+        await this.setCachedValueFor(transformedInput, value);
+        return value;
       }
     }
   }
@@ -34,7 +36,9 @@ export abstract class AbstractCacheAgent<In, Out, Key> {
       if (cachedValue !== null) {
         return cachedValue as FnOut;
       } else {
-        return fn(...args);
+        const value = await fn(...args);
+        await this.setCachedValueFor(transformedInput, value);
+        return value;
       }
     }
   }
