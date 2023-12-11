@@ -35,3 +35,5 @@ Application uses following environmental variables:
 - `REDIS_PORT` - *OPTIONAL* - Redis instance's port (defaults to: `6379`)
 - `CACHE_TTL` - *OPTIONAL* - Time in seconds defining how long should responses be cached (defaults to `86400` - 24h)
 
+## Documentation
+API is documented using Swagger plugin to Nest.js - built docs are available on `/docs` path in the running app (e.g. if app is running on `localhost:3000`, then docs are available under `localhost:3000/docs`)
